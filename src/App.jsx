@@ -6,6 +6,7 @@ function App() {
   const [time, setTime] = useState(0);
   const [records, setRecords] = useState([]);
   const [error, setError] = useState("");
+  const [totalTime, settotalTime] = useState(0);
 
   const onChangeTitle = event => setTitle(event.target.value);
   const onChangeTime = event => setTime(event.target.value);
@@ -18,6 +19,11 @@ function App() {
     const newRecords = [...records, {title, time}];
     setRecords(newRecords);
 
+    // 合計時間の計算
+    const newTotalTime = newRecords.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue.time), 0);
+    settotalTime(newTotalTime);
+
+    // 初期化
     setTitle("");
     setTime(0);
     setError("");
@@ -45,6 +51,7 @@ function App() {
     </ul>
     <button onClick={onClickAdd}>登録</button>
     {error !== "" && <p>{error}</p>}
+    <p>合計時間：{totalTime} / 1000 (h)</p>
   </>;
 }
 
