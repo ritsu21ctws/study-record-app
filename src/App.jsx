@@ -5,14 +5,22 @@ function App() {
   const [title, setTitle] = useState("");
   const [time, setTime] = useState(0);
   const [records, setRecords] = useState([]);
+  const [error, setError] = useState("");
 
   const onChangeTitle = event => setTitle(event.target.value);
   const onChangeTime = event => setTime(event.target.value);
   const onClickAdd = () => {
+    if ((title === "" && time === 0) || (title === "" && time === "")) {
+      setError("入力されていない項目があります");
+      return;
+    }
+
     const newRecords = [...records, {title, time}];
     setRecords(newRecords);
+
     setTitle("");
     setTime(0);
+    setError("");
   }
 
   return <>
@@ -36,6 +44,7 @@ function App() {
       ) )}
     </ul>
     <button onClick={onClickAdd}>登録</button>
+    {error !== "" && <p>{error}</p>}
   </>;
 }
 
