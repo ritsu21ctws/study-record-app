@@ -11,7 +11,7 @@ function App() {
   const onChangeTitle = event => setTitle(event.target.value);
   const onChangeTime = event => setTime(event.target.value);
   const onClickAdd = () => {
-    if ((title === "" && time === 0) || (title === "" && time === "")) {
+    if (title === "" || time === "" || time === 0) {
       setError("入力されていない項目があります");
       return;
     }
