@@ -37,7 +37,7 @@ function App() {
     </p>
     <p>
       学習時間
-      <input type="number" value={time} onChange={onChangeTime} />
+      <input type="number" min="0" value={time} onChange={onChangeTime} />
       時間
     </p>
     <p>入力されている学習内容：{title}</p>
