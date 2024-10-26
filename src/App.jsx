@@ -6,7 +6,7 @@ function App() {
   const [time, setTime] = useState(0);
   const [records, setRecords] = useState([]);
   const [error, setError] = useState("");
-  const [totalTime, settotalTime] = useState(0);
+  const [totalTime, setTotalTime] = useState(0);
 
   const onChangeTitle = event => setTitle(event.target.value);
   const onChangeTime = event => setTime(event.target.value);
@@ -21,7 +21,7 @@ function App() {
 
     // 合計時間の計算
     const newTotalTime = newRecords.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue.time), 0);
-    settotalTime(newTotalTime);
+    setTotalTime(newTotalTime);
 
     // 初期化
     setTitle("");
