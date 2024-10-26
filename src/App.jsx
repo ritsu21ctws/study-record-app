@@ -6,12 +6,12 @@ function App() {
   const [time, setTime] = useState(0);
   const [records, setRecords] = useState([]);
   const [error, setError] = useState("");
-  const [totalTime, settotalTime] = useState(0);
+  const [totalTime, setTotalTime] = useState(0);
 
   const onChangeTitle = event => setTitle(event.target.value);
   const onChangeTime = event => setTime(event.target.value);
   const onClickAdd = () => {
-    if ((title === "" && time === 0) || (title === "" && time === "")) {
+    if (title === "" || time === "" || time === 0) {
       setError("入力されていない項目があります");
       return;
     }
@@ -21,7 +21,7 @@ function App() {
 
     // 合計時間の計算
     const newTotalTime = newRecords.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue.time), 0);
-    settotalTime(newTotalTime);
+    setTotalTime(newTotalTime);
 
     // 初期化
     setTitle("");
@@ -37,7 +37,7 @@ function App() {
     </p>
     <p>
       学習時間
-      <input type="number" value={time} onChange={onChangeTime} />
+      <input type="number" min="0" value={time} onChange={onChangeTime} />
       時間
     </p>
     <p>入力されている学習内容：{title}</p>
@@ -50,7 +50,7 @@ function App() {
       ) )}
     </ul>
     <button onClick={onClickAdd}>登録</button>
-    {error !== "" && <p>{error}</p>}
+    {error !== "" && <p class="error">{error}</p>}
     <p>合計時間：{totalTime} / 1000 (h)</p>
   </>;
 }
